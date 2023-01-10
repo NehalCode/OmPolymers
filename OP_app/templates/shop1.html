@@ -1,0 +1,52 @@
+
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="bg-light py-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mb-0"><a href="index.html">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Shop</strong><span class="mx-2 mb-0">/</span> <strong>{{single_cat.cat_name}}</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section">
+      <div class="container">
+
+        <div class="row mb-5">
+          <div class="col-md-12 order-2">
+
+           
+
+            <div class="row mb-5">
+              
+              
+              
+              {% for pro in products %}
+              <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+                <div class="block-4 text-center border">
+                  <figure class="block-4-image" style="height: 350px;">
+                    <a href="{% url 'single_product' pro.pk  %}"><img src="{{pro.Product_image.url}}" alt="Image placeholder" class="img-fluid"></a>
+                  </figure>
+                  <div class="block-4-text p-4" style="height: 150px;">
+                    <h3><a href="{% url 'single_product' pro.pk %}">{{pro.Product_name}}</a></h3>
+                    <p class="mb-0">{{pro.product_category.cat_name}}</p>
+                    <p class="text-primary font-weight-bold">₹ {{pro.Product_price}}</p>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+             
+
+
+            </div>
+           
+          </div>
+
+        </div>
+
+        
+      </div>
+    </div>
+    {% endblock content %}

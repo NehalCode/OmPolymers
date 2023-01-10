@@ -1,0 +1,96 @@
+
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="bg-light py-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mb-0"><a href="index.html">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Shop</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section">
+      <div class="container">
+
+        <div class="row mb-5">
+          <div class="col-md-12 order-2">
+
+            <div class="row">
+              <div class="col-md-12 mb-5">
+                <div class="float-md-left mb-4"><h2 class="text-black h5">Shop All</h2></div>
+                <div class="d-flex">
+                  <div class="dropdown mr-1 ml-md-auto">
+                   
+                  </div>
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" id="dropdownMenuReference" data-toggle="dropdown">Category</button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
+                      {% for cat in category %}
+                      <a class="dropdown-item" href="{% url 'cat_filter' cat.pk %}">{{cat.cat_name}}</a>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb-5">
+              
+              
+              
+              {% for pro in products %}
+              <div class="col-sm-6 col-lg-4 mb-4 mt-5" style="height:500px;" data-aos="fade-up">
+                <div class="block-4 text-center border">
+                  <figure class="block-4-image" style="height:300px;" >
+                    <a href="{% url 'single_product' pro.pk  %}"><img src="{{pro.Product_image.url}}" alt="Image placeholder" class="img-fluid"></a>
+                  </figure>
+                  <div class="block-4-text p-4 mt-5" style="height:200px;">
+                    <h3><a href="{% url 'single_product' pro.pk %}">{{pro.Product_name}}</a></h3>
+                    <p class="mb-0">{{pro.product_category.cat_name}}</p>
+                    <p class="text-primary font-weight-bold">₹ {{pro.Product_price}}</p>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+             
+
+
+            </div>
+           
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="site-section site-blocks-2">
+                <div class="row justify-content-center text-center mb-5">
+                  <div class="col-md-7 site-section-heading pt-4">
+                    <h2>Categories</h2>
+                  </div>
+                </div>
+                <div class="row">
+                  {% for cat in category %}
+                  <div class="col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0" data-aos="fade" data-aos-delay="">
+                    <a class="block-2-item" href="#">
+                      <figure class="image" style="height:400px;">
+                        <img src="{{cat.cat_img.url}}" alt="" class="img-fluid">
+                      </figure>
+                      <div class="text">
+                        <span class="text-uppercase">Collections</span>
+                        <h3>{{cat.cat_name}}</h3>
+                      </div>
+                    </a>
+                  </div>
+                  {% endfor %}
+                </div>
+              
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    {% endblock content %}

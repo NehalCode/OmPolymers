@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title >Om Polymers app</title>
+    <title >Om Polymers </title>
     <link rel="icon" href="{% static 'images/logo.jpg' %}" type="image/x-icon">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -87,7 +87,7 @@
             <li class=""><a href="{% url 'contact' %}">Contact</a></li>
             
             {% if request.session.user_name %}
-            <li><a href="#">Welcome , {{request.session.user_name}}</a></li>
+            <li><i class="icon icon-person mt-2"></i><a href="#">Welcome , {{request.session.user_name}}</a></li>
             <li><a href="{% url 'logout' %}">logout</a></li>
             {% else %}
             <li class="has-children">

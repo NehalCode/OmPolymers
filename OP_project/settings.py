@@ -136,3 +136,9 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'helloompolymers@gmail.com'
 EMAIL_HOST_PASSWORD = 'fvzfmhbjdmricycm'
+
+
+
+# Razor Pay key
+RAZORPAY_API_KEY = "rzp_test_qmhD1HyAJTaQrl"
+RAZORPAY_API_SECRET_KEY = "gMRA6QjlM7BhLWjFkwLeAVwI"

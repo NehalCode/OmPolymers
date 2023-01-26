@@ -56,5 +56,22 @@ class Wishlist (models.Model):
     product_id = models.ForeignKey(Product,on_delete=models.CASCADE)
     date = models.DateField()
 
+class Order(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=15)
+    last_name = models.CharField(max_length=15)
+    adress = models.CharField(max_length=500,null=True,blank=True)
+    state = models.CharField(max_length=200,null=True,blank=True)
+    zipcode = models.BigIntegerField()
+    email = models.EmailField()
+    mobile_no = models.BigIntegerField()
+    total_price = models.FloatField()
+    status = models.CharField(max_length=100,null=True,blank=True)
+    date_time = models.DateTimeField()
 
+class Order_item(models.Model):
+    Order_id = models.ForeignKey(Order,on_delete=models.CASCADE)
+    Product_id = models.ForeignKey(Product,on_delete=models.CASCADE)
+    Product_qty = models.IntegerField()
+    Sub_total_price = models.FloatField(max_length=10) 
 

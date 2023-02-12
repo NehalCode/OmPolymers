@@ -34,15 +34,15 @@
           <div class="row align-items-center">
 
             <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
-              <form action="" class="site-block-top-search">
+              <!-- <form action="" class="site-block-top-search">
                 <span class="icon icon-search2"></span>
                 <input type="text" class="form-control border-0" placeholder="Search">
-              </form>
+              </form> -->
             </div>
 
             <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
               <div>
-                <a href="index.html" class="js-logo-clone">
+                <a href="/" class="js-logo-clone">
                   <img src="{% static 'images/logo2.jpg' %}" height="100px;">
                 </a>
 
@@ -52,7 +52,7 @@
             <div class="col-6 col-md-4 order-3 order-md-3 text-right">
               <div class="site-top-icons">
                 <ul>
-                  <li><a href="#"><span class="icon icon-person"></span></a></li>
+                  <li><a href="{% url 'profile' %}"><span class="icon icon-person"></span></a></li>
                   <li><a href="{% url 'wishlist' %}"><span class="icon icon-heart-o"></span></a></li>
                   <li>
                     <a href="{% url 'cart' %}" class="site-cart">
@@ -87,7 +87,7 @@
             <li class=""><a href="{% url 'contact' %}">Contact</a></li>
             
             {% if request.session.user_name %}
-            <li><i class="icon icon-person mt-2"></i><a href="#">Welcome , {{request.session.user_name}}</a></li>
+            <li><i class="icon icon-person mt-2"></i><a href="{% url 'profile' %}">Welcome , {{request.session.user_name}}</a></li>
             <li><a href="{% url 'logout' %}">logout</a></li>
             {% else %}
             <li class="has-children">
@@ -116,7 +116,7 @@
 
  
   <!-- footer start -->
-    <footer class="site-footer border-top">
+  <footer class="site-footer border-top">
         <div class="container">
           <div class="row">
             <div class="col-lg-6 mb-5 mb-lg-0">
@@ -135,6 +135,9 @@
                   <ul class="list-unstyled">
                     <li><a href="#">Track my order</a></li>
                     <li><a href="#">Cancellation and Return</a></li>
+                    {% if request.session.user_name %}
+                    <li><a href="{% url 'change_pass' %}">Change password</a></li>
+                    {% endif %}
                   </ul>
                 </div>
                 <div class="col-md-6 col-lg-4">
@@ -147,12 +150,7 @@
             <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
               <h3 class="footer-heading mb-4">Map</h3>
               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d234963.704286413!2d72.42464316854938!3d23.04917156263344!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e63c8004055e7%3A0xa0b027a85e8c8fa2!2sOm%20Polymers!5e0!3m2!1sen!2sin!4v1673077594601!5m2!1sen!2sin" width="230" height="210" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-              <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3693.351829097187!2d70.90716321490456!3d22.226725985361863!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3959b34e072c43e3%3A0x5d87df907edf4524!2sRAJKOT%20BHAVNAGAR%20HIGHWAY!5e0!3m2!1sen!2sin!4v1669539444143!5m2!1sen!2sin" width="230" height="210" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
-              <!-- <a href="#" class="block-6">
-                <img src="{% static 'images/hero_1.jpg' %}" alt="Image placeholder" class="img-fluid rounded mb-4">
-                <h3 class="font-weight-light  mb-0">Finding Your Perfect Shoes</h3>
-                <p>Promo from  nuary 15 &mdash; 25, 2019</p>
-              </a> -->
+             
             </div>
             <div class="col-md-6 col-lg-3">
               <div class="block-5 mb-5">
@@ -164,29 +162,21 @@
                 </ul>
               </div>
   
-              <!-- <div class="block-7">
-                <form action="#" method="post">
-                  <label for="email_subscribe" class="footer-heading">Subscribe</label>
-                  <div class="form-group">
-                    <input type="text" class="form-control py-4" id="email_subscribe" placeholder="Email">
-                    <input type="submit" class="btn btn-sm btn-primary" value="Send">
-                  </div>
-                </form>
-              </div> -->
+             
             </div>
           </div>
           <div class="row pt-5 mt-5 text-center">
             <div class="col-md-12">
-              <p>
-              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+              <!-- <p>
+              Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. 
               Copyright &copy;<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" class="text-primary">Colorlib</a>
-              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-              </p>
+              Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
+              </p> -->
             </div>
             
           </div>
         </div>
-      </footer>
+  </footer>
     </div>
   
     <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>

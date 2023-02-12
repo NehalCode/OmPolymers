@@ -21,9 +21,20 @@ urlpatterns = [
  path('about/',views.about,name="about"),
  path('wishlist/',views.wishlist,name="wishlist"),
  path('remove_wishlist/<int:pk>/',views.remove_wishlist,name="remove_wishlist"),
-
+ path('add_to_wishlist/<int:pk>/',views.add_to_wishlist,name="add_to_wishlist"),
  path('checkout/',views.checkout,name="checkout"),
  path('invoice/',views.invoice,name="invoice"),
- path('paymenthandler/', views.paymenthandler, name='paymenthandler')
+ path('paymenthandler/',views.paymenthandler,name='paymenthandler'),
+ path('change_pass/',views.change_pass,name='change_pass'),
+ path('forgot_pass/',views.forgot_pass,name='forgot_pass'),
+ path('new_password/',views.new_password,name='new_password'),
+ path('save_password/',views.save_password,name='save_password'),
+
+ path('profile/',views.profile,name='profile'),
+
+
+ 
+
+
  
 ]

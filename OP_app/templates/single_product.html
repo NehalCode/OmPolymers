@@ -41,7 +41,8 @@
                 </div>
 
                 </div>
-                <p><button type="submit" class="buy-now btn btn-sm btn-primary">Add To Cart</button></p>
+                <p><button type="submit" class="buy-now btn btn-sm btn-primary">Add To Cart</button>
+                  <a href="{% url 'add_to_wishlist' pk=product.pk  %}"  class="bi bi-border red-color mx-3"><i class="icon icon-heart-o"></i></a></p>
               </form>
               </div>
 

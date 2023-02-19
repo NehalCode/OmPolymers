@@ -93,58 +93,68 @@
   </div>
 </div>
 <script>
-  function validation() {
-    event.preventDefault();
-    console.log("call....")
-    var fname = document.forms.SignForm.c_fname.value;
-    var lname = document.forms.SignForm.c_lname.value;
-    var email = document.forms.SignForm.c_email.value;
-    var mobile = document.forms.SignForm.c_mobile.value;
-    var password = document.forms.SignForm.password.value;
-    var cinfirm_password = document.forms.SignForm.c_password.value;
+  // function validation() {
+  //   // event.preventDefault();
+  //   console.log("call....")
+  //   var fname = document.forms.SignForm.c_fname.value;
+  //   var lname = document.forms.SignForm.c_lname.value;
+  //   var email = document.forms.SignForm.c_email.value;
+  //   var mobile = document.forms.SignForm.c_mobile.value;
+  //   var password = document.forms.SignForm.password.value;
+  //   var confirm_password = document.forms.SignForm.c_password.value;
 
-    var regc_email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g; //Javascript reGex for Email Validation.
-    var regc_mobile = /^\d{10}$/; // Javascript reGex for Phone Number validation.
-    var regc_fname = /\d+$/g; // Javascript reGex for Name validation
-    var regc_lname = /\d+$/g;
+  //   var regc_email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g; //Javascript reGex for Email Validation.
+  //   var regc_mobile = /^\d{10}$/; // Javascript reGex for Phone Number validation.
+  //   var regc_fname = /\d+$/g; // Javascript reGex for Name validation
+  //   var regc_lname = /\d+$/g;
 
-    if (fname == "" || regc_fname.test(fname)) {
-      document.getElementById("firstnamespan").style.display="block"
-      document.getElementById("firstnamespan").innerHTML="Please enter first name."
-      // window.alert("Please enter your name properly.");
-      // fname.focus();
-      return false;
-    }
-    if (lname == "" || regc_lname.test(lname)) {
-      document.getElementById("lastnamespan").style.display="block"
-      document.getElementById("lastnamespan").innerHTML="Please enter last name."
-      // window.alert("Please enter your name properly.");
-      // flname.focus();
-      return false;
-    }
-    if (email == "" || !regc_email.test(email)) {
-      document.getElementById("emailspan").style.display="block"
-      document.getElementById("emailspan").innerHTML="Please enter a valid e-mail address."
+  //   if (fname == "" || regc_fname.test(fname)) {
+  //     document.getElementById("firstnamespan").style.display="block"
+  //     document.getElementById("firstnamespan").innerHTML="Please enter first name."
+  //     window.alert("Please enter your name properly.");
+  //     fname.focus();
+  //     return false;
+  //   }
+  //   if (lname == "" || regc_lname.test(lname)) {
+  //     document.getElementById("lastnamespan").style.display="block"
+  //     document.getElementById("lastnamespan").innerHTML="Please enter last name."
+  //     window.alert("Please enter your name properly.");
+  //     flname.focus();
+  //     return false;
+  //   }
+  //   if (email == "" || !regc_email.test(email)) {
+  //     document.getElementById("emailspan").style.display="block"
+  //     document.getElementById("emailspan").innerHTML="Please enter a valid e-mail address."
+  //     window.alert("Please enter a valid e-mail address.");
+  //     email.focus();
+  //     return false;
+  //   }
+  //   if (mobile == "" || !regc_mobile.test(mobile)) {
+  //     document.getElementById("mobilespan").style.display="block"
+  //     document.getElementById("mobilespan").innerHTML="Please enter mobileno."
+  //     window.alert("Please enter a valid e-mail address.");
+  //     mobile.focus();
+  //     return false;
+  //   }
+  //   if (password.length < 8) {
+  //     document.getElementById("passwordspan").style.display="block"
+  //     document.getElementById("passwordspan").innerHTML="Please enter a password."
+  //     alert("Password should be atleast 6 character long");
+  //     password.focus();
+  //     return false;
+      
 
-      // window.alert("Please enter a valid e-mail address.");
-      // email.focus();
-      return false;
-    }
-    if (mobile == "" || !regc_mobile.test(mobile)) {
-      document.getElementById("mobilespan").style.display="block"
-      document.getElementById("mobilespan").innerHTML="Please enter mobileno."
-      // window.alert("Please enter a valid e-mail address.");
-      // mobile.focus();
-      return false;
-    }
-    if (password.length < 8) {
-      document.getElementById("passwordspan").style.display="block"
-      document.getElementById("passwordspan").innerHTML="Please enter a password."
-      // alert("Password should be atleast 6 character long");
-      // password.focus();
-      return false;
+  //   }
+  //   if (confirm_password.length < 8) {
+  //     document.getElementById("confirm_password").style.display="block"
+  //     document.getElementById("confirm_password").innerHTML="Please enter a password."
+  //     alert("Password should be atleast 6 character long");
+  //     password.focus();
+  //     return false;
+  //   }  
+  //   console.log("end...")
+  //   return true;
 
-    }
-  }
+  // }
 </script>
 {% endblock content %}

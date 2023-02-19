@@ -16,12 +16,13 @@ from django.contrib.messages import constants as messages
 
 
 def index(request):
-
     category = Product_category.objects.all()
     products = Product.objects.all()
-
+    if request.session['email']:
+        user = User.objects.get(email=request.session['email'])
+        cartItem = Cart.objects.filter(user=user).count()
     # print("category : ",category)
-    context = {'category': category, 'products': products}
+    context = {'category': category, 'products': products, 'cartItem':cartItem}
     return render(request, "index.html", context)
 
 
@@ -189,10 +190,8 @@ def about(request):
 
 def cart(request):
     try:
-        # print("email-->",request.session['email'])
         user = User.objects.get(email=request.session['email'])
         cart_product = Cart.objects.filter(user=user)
-        # print("Cart product-->",cart_product)
         sub_total = 0
         dilvery_charge = 0
         for pro in cart_product:
@@ -204,7 +203,6 @@ def cart(request):
         return render(request, 'cart.html', context)
 
     except Exception as e:
-        print("---->", e)
         msg = "Please First do login !"
         context = {'msg': msg}
         return render(request, 'login.html', context)
@@ -212,14 +210,10 @@ def cart(request):
 
 def add_to_cart(request, pk):
     try:
-        # import pdb;pdb.set_trace()
         product = Product.objects.get(pk=pk)
         user = User.objects.get(email=request.session['email'])
         cart_product = Cart.objects.filter(user=user)
-
         pro_qty = request.POST['pro_qty']
-        print(type(pro_qty))
-
         total_price = product.Product_price * int(pro_qty)
 
         try:
@@ -230,9 +224,8 @@ def add_to_cart(request, pk):
             cart_obj.total_price = product.Product_price * \
                 int(cart_obj.product_qty)
             cart_obj.save()
-            print("qty -->", cart_obj)
+           
         except Exception as e:
-            print("---->", e)
             Cart.objects.create(user=user,
                                 product_id=product,
                                 product_qty=pro_qty,
@@ -243,7 +236,6 @@ def add_to_cart(request, pk):
         # return render(request,'cart.html',context)
         return redirect('cart')
     except Exception as e:
-        print("---->", e)
         msg = "Please First do login !"
         context = {'msg': msg}
         return render(request, 'login.html', context)
@@ -257,7 +249,6 @@ def wishlist(request):
         return render(request, 'Wishlist.html', context)
 
     except Exception as e:
-        print("---->", e)
         msg = "Please First do login !"
         context = {'msg': msg}
         return render(request, 'login.html', context)
@@ -308,13 +299,13 @@ def checkout(request):
     cart_product = Cart.objects.filter(user=user)
 
     if request.method == "POST":
-        fname = request.POST['fname']
-        lname = request.POST['lname']
-        adress = request.POST['adress']
-        state = request.POST['state']
-        zipcode = request.POST['zipcode']
-        email = request.POST['email']
-        mobile_no = request.POST['mobile_no']
+        fname = request.POST['c_fname']
+        lname = request.POST['c_lname']
+        adress = request.POST['c_adress']
+        state = request.POST['c_state']
+        zipcode = request.POST['c_zipcode']
+        email = request.POST['c_email']
+        mobile_no = request.POST['c_phone']
         print(fname, lname, adress, state, zipcode, email, mobile_no)
 
     else:
@@ -511,10 +502,12 @@ def profile(request):
             fname = request.POST['fname']
             lname = request.POST['lname']
             mobile = request.POST['mobile_no']
+            dob = request.POST['dob']
 
             user_obj.firstname = fname
             user_obj.lastname = lname
             user_obj.mobile_no = mobile
+            user_obj.dob = dob
 
             user_obj.save()
             msg = "Your Profile Updated Sucessfully"

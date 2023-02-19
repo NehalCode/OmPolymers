@@ -297,49 +297,42 @@ def checkout(request):
     email = request.session['email']
     user = User.objects.get(email=email)
     cart_product = Cart.objects.filter(user=user)
+    sub_total = 0
+    dilivery_charge = 0
+
+    for product in cart_product:
+        sub_total = sub_total + product.total_price
+
+    sub_total = sub_total + dilivery_charge
+    final_total = sub_total
 
     if request.method == "POST":
-        fname = request.POST['c_fname']
-        lname = request.POST['c_lname']
-        adress = request.POST['c_adress']
-        state = request.POST['c_state']
-        zipcode = request.POST['c_zipcode']
-        email = request.POST['c_email']
-        mobile_no = request.POST['c_phone']
-        print(fname, lname, adress, state, zipcode, email, mobile_no)
+        fname = request.POST['fname']
+        lname = request.POST['lname']
+        address = request.POST['address']
+        state = request.POST['state']
+        zipcode = request.POST['pincode']
+        email = request.POST['email']
+        mobile_no = request.POST['phone']
+        cod = request.POST['cod']
+        # online = request.POST['online']
+        print(fname, lname, address, state, zipcode, email, mobile_no,cod)
+
+        if(cod):
+    
+            order = Order.objects.create(user=user,first_name=fname,last_name=lname,address=address,state=state,zipcode=zipcode,email=email,mobile_no=mobile_no,total_price=final_total,status="Pending",date_time=datetime.datetime.now)
+            
+            for product in cart_product:
+                Order_item.objects.create(Order_id=order,Product_id=product.product_id,Product_qty=product.product_qty,Sub_total_price=sub_total)
+
+            return render(request,"invoice.html")
 
     else:
-
-        currency = 'INR'
-        print("--------cart product--------")
-        print(cart_product)
-        sub_total = 0
-        dilivery_charge = 0
-
-        for product in cart_product:
-            sub_total = sub_total + product.total_price
-
-        sub_total = sub_total + dilivery_charge
-        final_total = sub_total
-        amount = int(final_total) * 100
-        # Create a Razorpay Order
-        razorpay_order = razorpay_client.order.create(dict(amount=int(amount),
-                                                           currency='INR',
-                                                           payment_capture='1'))
-
-        # order id of newly created order.
-        razorpay_order_id = razorpay_order['id']
-        callback_url = 'paymenthandler/'
-
-        # we need to pass these details to frontend.
-
+        
+        
         context = {'sub_total': sub_total,
                    "final_total": final_total, "cart_product": cart_product}
-        context['razorpay_order_id'] = razorpay_order_id
-        context['razorpay_merchant_key'] = settings.RAZORPAY_API_KEY
-        context['razorpay_amount'] = amount
-        context['currency'] = currency
-        context['callback_url'] = callback_url
+    
         return render(request, "checkout.html", context)
 
 

@@ -61,7 +61,7 @@ class Order(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     first_name = models.CharField(max_length=15)
     last_name = models.CharField(max_length=15)
-    adress = models.CharField(max_length=500,null=True,blank=True)
+    address = models.CharField(max_length=500,null=True,blank=True)
     state = models.CharField(max_length=200,null=True,blank=True)
     zipcode = models.BigIntegerField()
     email = models.EmailField()

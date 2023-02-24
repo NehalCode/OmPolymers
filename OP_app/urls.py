@@ -24,7 +24,6 @@ urlpatterns = [
  path('add_to_wishlist/<int:pk>/',views.add_to_wishlist,name="add_to_wishlist"),
  path('checkout/',views.checkout,name="checkout"),
  path('invoice/',views.invoice,name="invoice"),
- path('paymenthandler/',views.paymenthandler,name='paymenthandler'),
  path('change_pass/',views.change_pass,name='change_pass'),
  path('forgot_pass/',views.forgot_pass,name='forgot_pass'),
  path('new_password/',views.new_password,name='new_password'),

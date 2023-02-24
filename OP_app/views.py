@@ -18,9 +18,13 @@ from django.contrib.messages import constants as messages
 def index(request):
     category = Product_category.objects.all()
     products = Product.objects.all()
-    if request.session['email']:
-        user = User.objects.get(email=request.session['email'])
-        cartItem = Cart.objects.filter(user=user).count()
+    cartItem = 0
+    try:
+        if request.session['email']:
+            user = User.objects.get(email=request.session['email'])
+            cartItem = Cart.objects.filter(user=user).count()
+    except:
+        pass
     # print("category : ",category)
     context = {'category': category, 'products': products, 'cartItem':cartItem}
     return render(request, "index.html", context)
@@ -283,16 +287,9 @@ def remove_wishlist(request, pk):
     Wishlist.objects.filter(pk=pk).delete()
     return redirect('wishlist')
 
-
-def invoice(request):
-    return render(request, "invoice.html")
-
-
 # authorize razorpay client with API Keys.
-razorpay_client = razorpay.Client(
-    auth=(settings.RAZORPAY_API_KEY, settings.RAZORPAY_API_SECRET_KEY))
 
-
+client = razorpay.Client(auth=(settings.RAZORPAY_API_KEY,settings.RAZORPAY_API_SECRET_KEY))
 def checkout(request):
     email = request.session['email']
     user = User.objects.get(email=email)
@@ -314,22 +311,24 @@ def checkout(request):
         zipcode = request.POST['pincode']
         email = request.POST['email']
         mobile_no = request.POST['phone']
-        cod = request.POST['cod']
+        payment_type = request.POST['payment_type']
         # online = request.POST['online']
-        print(fname, lname, address, state, zipcode, email, mobile_no,cod)
+        print(fname, lname, address, state, zipcode, email, mobile_no,payment_type)
 
-        if(cod):
-    
+        if(payment_type=="cod"):
             order = Order.objects.create(user=user,first_name=fname,last_name=lname,address=address,state=state,zipcode=zipcode,email=email,mobile_no=mobile_no,total_price=final_total,status="Pending",date_time=datetime.datetime.now)
-            
             for product in cart_product:
                 Order_item.objects.create(Order_id=order,Product_id=product.product_id,Product_qty=product.product_qty,Sub_total_price=sub_total)
-
             return render(request,"invoice.html")
+        else:
+            tax = 0
+            order_amount = int(final_total)
+            order_currency = "INR"
+            payment_order = client.order.create(dict(amount=order_amount*100,currency=order_currency,payment_capture=1))
+            payment_order_id = payment_order['id']
+            return render(request,'pay.html',{'amount':order_amount,'payment_order':payment_order,'user':user,'sub_total':sub_total,'tax':tax})
 
     else:
-        
-        
         context = {'sub_total': sub_total,
                    "final_total": final_total, "cart_product": cart_product}
     
@@ -340,12 +339,10 @@ def checkout(request):
 # POST request will be made by Razorpay
 # and it won't have the csrf token.
 @csrf_exempt
-def paymenthandler(request):
-
+def invoice(request):
     # only accept POST request.
     if request.method == "POST":
         try:
-
             # get the required parameters from post request.
             payment_id = request.POST.get('razorpay_payment_id', '')
             razorpay_order_id = request.POST.get('razorpay_order_id', '')
@@ -357,27 +354,17 @@ def paymenthandler(request):
                 'razorpay_payment_id': payment_id,
                 'razorpay_signature': signature
             }
-
+            
             # verify the payment signature.
-            result = razorpay_client.utility.verify_payment_signature(
-                params_dict)
+            result = client.utility.verify_payment_signature(params_dict)
             if result is not None:
                 amount = amount  # Rs. 200
-                try:
-
-                    # capture the payemt
-                    razorpay_client.payment.capture(payment_id, amount)
-
-                    # render success page on successful caputre of payment
-                    return render(request, 'invoice.html')
-                except:
-
-                    # if there is an error while capturing payment.
-                    return redirect("checkout")
+                print("sucessfull payment.....")
+                return render(request, 'invoice.html')
             else:
-
                 # if signature verification fails.
-                return render(request, 'paymentfail.html')
+                print("fail payment....")
+                return render(request, 'checkout.html',{"msg":"Something wrong.Please try again."})
         except:
 
             # if we don't find the required parameters in POST data

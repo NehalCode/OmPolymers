@@ -1,0 +1,45 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="bg-light py-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mb-0"><a href="index.html">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">OTP Verification</strong></div>
+        </div>
+      </div>
+    </div>  
+
+    <section class="product-details spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+
+                    <h1>Continue To Online Payment </h1>
+
+                </div>
+                <div class="col-md-12">
+                    <br>
+                    <h5>Click on <b style="border: 1px solid">Pay Now</b> Button to Start Payment Process </h5>
+                    <br>
+                    <div style="margin-left: 180px;">
+                        <form action="{% url 'invoice' %}" method="POST">
+                            {% csrf_token %}
+                            <script src="https://checkout.razorpay.com/v1/checkout.js"
+                                data-key="rzp_test_qmhD1HyAJTaQrl" data-amount="{% widthratio amount 1 100 %}"
+                                data-currency="INR" data-order_id="{{payment_order.id}}"
+                                data-description="Om Polymers" data-theme.color="#528FF0"
+                                data-payment_button_id="pl_GdRmzRJExgqjHh">
+                                </script>
+
+                            <input type="hidden" name="amount" value="{{amount}}">
+                            <input type="hidden" name="sub_total" value="{{sub_total}}">
+                            <input type="hidden" name="tax" value="{{tax}}">
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+{% endblock content %}

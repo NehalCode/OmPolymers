@@ -200,7 +200,7 @@ def cart(request):
         dilvery_charge = 0
         for pro in cart_product:
             sub_total = sub_total + pro.total_price
-        final_total = sub_total + dilvery_charge
+            final_total = sub_total + dilvery_charge
 
         context = {'cart_product': cart_product, 'sub_total': sub_total,
                    'final_total': final_total, 'dilvery_charge': dilvery_charge}
@@ -316,10 +316,11 @@ def checkout(request):
         print(fname, lname, address, state, zipcode, email, mobile_no,payment_type)
 
         if(payment_type=="cod"):
-            order = Order.objects.create(user=user,first_name=fname,last_name=lname,address=address,state=state,zipcode=zipcode,email=email,mobile_no=mobile_no,total_price=final_total,status="Pending",date_time=datetime.datetime.now)
+            order = Order.objects.create(user=user,first_name=fname,last_name=lname,address=address,state=state,zipcode=zipcode,email=email,mobile_no=mobile_no,total_price=final_total,status="Pending")
             for product in cart_product:
                 Order_item.objects.create(Order_id=order,Product_id=product.product_id,Product_qty=product.product_qty,Sub_total_price=sub_total)
-            return render(request,"invoice.html")
+            orderItems = Order_item.objects.filter(Order_id=order)
+            return render(request,"invoice.html",{'order':order,'orderItems':orderItems})
         else:
             tax = 0
             order_amount = int(final_total)
@@ -359,7 +360,10 @@ def invoice(request):
             result = client.utility.verify_payment_signature(params_dict)
             if result is not None:
                 amount = amount  # Rs. 200
+                # Order.objects.get()
                 print("sucessfull payment.....")
+                # user=User.objects.get(email=email)
+                # order=Order.objects.get()
                 return render(request, 'invoice.html')
             else:
                 # if signature verification fails.
@@ -370,9 +374,8 @@ def invoice(request):
             # if we don't find the required parameters in POST data
             return HttpResponseBadRequest()
     else:
-       # if other than POST request is made.
-        return HttpResponseBadRequest()
-
+       
+       return render(request, 'invoice.html')
 
 def change_pass(request):
     if request.method == "POST":

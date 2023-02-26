@@ -67,8 +67,8 @@ class Order(models.Model):
     email = models.EmailField()
     mobile_no = models.BigIntegerField()
     total_price = models.FloatField()
-    status = models.CharField(max_length=100,null=True,blank=True)
-    date_time = models.DateTimeField()
+    status = models.CharField(default="unpaid",max_length=100,null=True,blank=True)
+    date_time = models.DateTimeField(auto_now_add=True, blank=True)
 
 class Order_item(models.Model):
     Order_id = models.ForeignKey(Order,on_delete=models.CASCADE)

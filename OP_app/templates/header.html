@@ -127,14 +127,15 @@
                 <div class="col-md-6 col-lg-4">
                   <ul class="list-unstyled">
                     <li><a href="{% url 'contact' %}">Help</a></li>
-                    <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                    
                     <li><a href="{% url 'shop' %}">Shopping cart</a></li>
                   </ul>
                 </div>
                 <div class="col-md-6 col-lg-4">
                   <ul class="list-unstyled">
-                    <li><a href="#">Track my order</a></li>
-                    <li><a href="#">Cancellation and Return</a></li>
+                    <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                    <!-- <li><a href="#">Track my order</a></li> -->
+                    <!-- <li><a href="#">Cancellation and Return</a></li> -->
                     {% if request.session.user_name %}
                     <li><a href="{% url 'change_pass' %}">Change password</a></li>
                     {% endif %}

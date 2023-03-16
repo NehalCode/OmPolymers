@@ -29,7 +29,9 @@ admin.site.register(Cart)
 class WishlistAdmin(admin.ModelAdmin):
     list_display = ("user",)
 admin.site.register(Wishlist,WishlistAdmin)
-
-admin.site.register(Order)
-
-admin.site.register(Order_item)
+class orderAdmin(admin.ModelAdmin):
+    list_display  = ("first_name", "email", "total_price","status")
+admin.site.register(Order,orderAdmin)
+class orderitemAdmin(admin.ModelAdmin):
+    list_display  = ("Order_id", "Product_id")
+admin.site.register(Order_item,orderitemAdmin)

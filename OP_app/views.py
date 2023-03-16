@@ -299,7 +299,7 @@ def checkout(request):
 
     for product in cart_product:
         sub_total = sub_total + product.total_price
-
+        print(product)
     sub_total = sub_total + dilivery_charge
     final_total = sub_total
 
@@ -318,9 +318,9 @@ def checkout(request):
         if(payment_type=="cod"):
             order = Order.objects.create(user=user,first_name=fname,last_name=lname,address=address,state=state,zipcode=zipcode,email=email,mobile_no=mobile_no,total_price=final_total,status="Pending")
             for product in cart_product:
-                Order_item.objects.create(Order_id=order,Product_id=product.product_id,Product_qty=product.product_qty,Sub_total_price=sub_total)
+                Order_item.objects.create(Order_id=order,Product_id=product.product_id,Product_qty=product.product_qty,Sub_total_price=product.total_price)
             orderItems = Order_item.objects.filter(Order_id=order)
-            return render(request,"invoice.html",{'order':order,'orderItems':orderItems})
+            return render(request,"invoice.html",{'order':order,'orderItems':orderItems,"final_total": final_total,"sub_total": sub_total,"dilivery_charge":dilivery_charge})
         else:
             tax = 0
             order_amount = int(final_total)
@@ -362,6 +362,7 @@ def invoice(request):
                 amount = amount  # Rs. 200
                 # Order.objects.get()
                 print("sucessfull payment.....")
+                
                 # user=User.objects.get(email=email)
                 # order=Order.objects.get()
                 return render(request, 'invoice.html')

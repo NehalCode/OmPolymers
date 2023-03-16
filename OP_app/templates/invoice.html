@@ -2,136 +2,173 @@
 {% load static %}
 {% block content %}
 <style>
-    body{
-    margin-top:20px;
-    color: #484b51;
-}
-.text-secondary-d1 {
-    color: #728299!important;
-}
-.page-header {
-    margin: 0 0 1rem;
-    padding-bottom: 1rem;
-    padding-top: .5rem;
-    border-bottom: 1px dotted #e2e2e2;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    -ms-flex-align: center;
-    align-items: center;
-}
-.page-title {
-    padding: 0;
-    margin: 0;
-    font-size: 1.75rem;
-    font-weight: 300;
-}
-.brc-default-l1 {
-    border-color: #dce9f0!important;
-}
+    body {
+        margin-top: 20px;
+        color: #484b51;
+    }
 
-.ml-n1, .mx-n1 {
-    margin-left: -.25rem!important;
-}
-.mr-n1, .mx-n1 {
-    margin-right: -.25rem!important;
-}
-.mb-4, .my-4 {
-    margin-bottom: 1.5rem!important;
-}
+    .text-secondary-d1 {
+        color: #728299 !important;
+    }
 
-hr {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    border: 0;
-    border-top: 1px solid rgba(0,0,0,.1);
-}
+    .page-header {
+        margin: 0 0 1rem;
+        padding-bottom: 1rem;
+        padding-top: .5rem;
+        border-bottom: 1px dotted #e2e2e2;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -ms-flex-align: center;
+        align-items: center;
+    }
 
-.text-grey-m2 {
-    color: #888a8d!important;
-}
+    .page-title {
+        padding: 0;
+        margin: 0;
+        font-size: 1.75rem;
+        font-weight: 300;
+    }
 
-.text-success-m2 {
-    color: #86bd68!important;
-}
+    .brc-default-l1 {
+        border-color: #dce9f0 !important;
+    }
 
-.font-bolder, .text-600 {
-    font-weight: 600!important;
-}
+    .ml-n1,
+    .mx-n1 {
+        margin-left: -.25rem !important;
+    }
 
-.text-110 {
-    font-size: 110%!important;
-}
-.text-blue {
-    color: #478fcc!important;
-}
-.pb-25, .py-25 {
-    padding-bottom: .75rem!important;
-}
+    .mr-n1,
+    .mx-n1 {
+        margin-right: -.25rem !important;
+    }
 
-.pt-25, .py-25 {
-    padding-top: .75rem!important;
-}
-.bgc-default-tp1 {
-    background-color: rgba(121,169,197,.92)!important;
-}
-.bgc-default-l4, .bgc-h-default-l4:hover {
-    background-color: #f3f8fa!important;
-}
-.page-header .page-tools {
-    -ms-flex-item-align: end;
-    align-self: flex-end;
-}
+    .mb-4,
+    .my-4 {
+        margin-bottom: 1.5rem !important;
+    }
 
-.btn-light {
-    color: #757984;
-    background-color: #f5f6f9;
-    border-color: #dddfe4;
-}
-.w-2 {
-    width: 1rem;
-}
+    hr {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border: 0;
+        border-top: 1px solid rgba(0, 0, 0, .1);
+    }
 
-.text-120 {
-    font-size: 120%!important;
-}
-.text-primary-m1 {
-    color: #4087d4!important;
-}
+    .text-grey-m2 {
+        color: #888a8d !important;
+    }
 
-.text-danger-m1 {
-    color: #dd4949!important;
-}
-.text-blue-m2 {
-    color: #68a3d5!important;
-}
-.text-150 {
-    font-size: 150%!important;
-}
-.text-60 {
-    font-size: 60%!important;
-}
-.text-grey-m1 {
-    color: #7b7d81!important;
-}
-.align-bottom {
-    vertical-align: bottom!important;
-}
-.pc{
-    color: grey;
-    font-weight: 100;
-}
-.pf{
-    color: grey;
-    font-weight: 100;
-}
-.ph{
-    color: black;
-}
+    .text-success-m2 {
+        color: #86bd68 !important;
+    }
 
+    .font-bolder,
+    .text-600 {
+        font-weight: 600 !important;
+    }
 
+    .text-110 {
+        font-size: 110% !important;
+    }
+
+    .text-blue {
+        color: #478fcc !important;
+    }
+
+    .pb-25,
+    .py-25 {
+        padding-bottom: .75rem !important;
+    }
+
+    .pt-25,
+    .py-25 {
+        padding-top: .75rem !important;
+    }
+
+    .bgc-default-tp1 {
+        background-color: rgba(121, 169, 197, .92) !important;
+    }
+
+    .bgc-default-l4,
+    .bgc-h-default-l4:hover {
+        background-color: #f3f8fa !important;
+    }
+
+    .page-header .page-tools {
+        -ms-flex-item-align: end;
+        align-self: flex-end;
+    }
+
+    .btn-light {
+        color: #757984;
+        background-color: #f5f6f9;
+        border-color: #dddfe4;
+    }
+
+    .w-2 {
+        width: 1rem;
+    }
+
+    .text-120 {
+        font-size: 120% !important;
+    }
+
+    .text-primary-m1 {
+        color: #4087d4 !important;
+    }
+
+    .text-danger-m1 {
+        color: #dd4949 !important;
+    }
+
+    .text-blue-m2 {
+        color: #68a3d5 !important;
+    }
+
+    .text-150 {
+        font-size: 150% !important;
+    }
+
+    .text-60 {
+        font-size: 60% !important;
+    }
+
+    .text-grey-m1 {
+        color: #7b7d81 !important;
+    }
+
+    .align-bottom {
+        vertical-align: bottom !important;
+    }
+
+    .pc {
+        color: grey;
+        font-weight: 100;
+    }
+
+    .pf {
+        color: grey;
+        font-weight: 100;
+    }
+
+    .ph {
+        color: black;
+    }
 </style>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $('#pdfinvoice').click(function () {
+        Popup($('.invoice')[0].outerHTML);
+
+        function Popup(data) {
+            window.print();
+            return true;
+        }
+    });
+</script>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
 <div class="page-content container">
@@ -140,33 +177,29 @@ hr {
             Invoice
             <small class="page-info">
                 <i class="fa fa-angle-double-right text-80"></i>
-                ID: #111-222
+                ID: #{{order.pk}}
             </small>
         </h1>
 
         <div class="page-tools">
             <div class="action-buttons">
-                <a class="btn bg-white btn-light mx-1px text-95" href="#" data-title="Print">
+                <button class="btn bg-white btn-light mx-1px text-95" id="printInvoice">
                     <i class="mr-1 fa fa-print text-primary-m1 text-120 w-2"></i>
                     Print
-                </a>
-                <a class="btn bg-white btn-light mx-1px text-95" href="#" data-title="PDF">
-                    <i class="mr-1 fa fa-file-pdf-o text-danger-m1 text-120 w-2"></i>
-                    Export
-                </a>
+                </button>
             </div>
         </div>
     </div>
 
-    <div class="container px-0">
+    <div class="invoice container px-0">
         <div class="row mt-4">
             <div class="col-12 col-lg-12">
                 <div class="row">
                     <div class="col-12">
                         <div class="text-center text-150">
                             <img src="{% static 'images/logo2.jpg' %}" height="70px;">
-                             
-                           
+
+
                         </div>
                     </div>
                 </div>
@@ -181,14 +214,16 @@ hr {
                             <span class="text-600 text-110 text-blue align-middle">Om Polymers</span>
                         </div>
                         <div class="text-grey-m2">
-                            <div class="my-1"><i class="fa fa-map fa-flip-horizontal text-first"></i><b class="text-600">
-                                Plot no. 256, Avdhesh industrial estate, Bhavda, Nr, Bakrol, Gujarat</b>
+                            <div class="my-1"><i class="fa fa-map fa-flip-horizontal text-first"></i><b
+                                    class="text-600">
+                                    Plot no. 256, Avdhesh industrial estate, Bhavda, Nr, Bakrol, Gujarat</b>
                             </div>
-                            
-                                <div class="my-2"> <span class="text-600 text-90">Pin code:</span> 382334</div>
-                            
-                            
-                                <div class="my-1 ph"><i class="fa fa-phone fa-flip-horizontal text-secondary"></i> <b class="text-600"> +91 77789 40365</b></div>
+
+                            <div class="my-2"> <span class="text-600 text-90">Pin code:</span> 382334</div>
+
+
+                            <div class="my-1 ph"><i class="fa fa-phone fa-flip-horizontal text-secondary"></i> <b
+                                    class="text-600"> +91 77789 40365</b></div>
                         </div>
                     </div>
                     <div class="text-95 col-sm-6 align-self-start d-sm-flex justify-content-end">
@@ -198,17 +233,22 @@ hr {
                                 Invoice
                             </div>
 
-                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">ID:</span> #111-222</div>
+                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span
+                                    class="text-600 text-90">ID:</span> #{{order.pk}}</div>
 
-                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90"> Date and Time:</span> {{order.date_time}}</div>
+                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span
+                                    class="text-600 text-90"> Date and Time:</span> {{order.date_time}}</div>
 
-                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Status:</span> <span class="badge badge-warning badge-pill px-25">Unpaid</span></div>
+                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span
+                                    class="text-600 text-90">Status:</span> <span
+                                    class="badge badge-warning badge-pill px-25">{{order.status}}</span></div>
                         </div>
                     </div>
                     <div class="col-sm-12" style="margin-top: 15px;">
                         <div>
                             <span class="text-sm text-grey-m2 align-middle">To:</span>
-                            <span class="text-600 text-110 text-blue align-middle">{{order.first_name}} {{order.last_name}}</span>
+                            <span class="text-600 text-110 text-blue align-middle">{{order.first_name}}
+                                {{order.last_name}}</span>
                         </div>
                         <div class="text-grey-m2">
                             <div class="my-1"><i class="fa fa-map "></i> <b class="text-600">{{order.address}}</div>
@@ -216,17 +256,18 @@ hr {
                         <div>
                             <div class="my-2 pf"> <span class="text-600 text-90">State:</span> {{order.state}}</div>
                         </div>
-                        
-                            <div class="my-2 pc"> <span class="text-600 text-90">Pin code:</span> {{order.zipcode}}</div>
-                        
 
-                        <div>        
-                           <div class="my-1"><i class="fa fa-phone fa-flip-horizontal text-secondary"></i> <b class="text-600"> {{order.mobile_no}}</b></div>
+                        <div class="my-2 pc"> <span class="text-600 text-90">Pin code:</span> {{order.zipcode}}</div>
+
+
+                        <div>
+                            <div class="my-1"><i class="fa fa-phone fa-flip-horizontal text-secondary"></i> <b
+                                    class="text-600"> {{order.mobile_no}}</b></div>
                         </div>
                     </div>
                     <!-- /.col -->
 
-                   
+
                     <!-- /.col -->
                 </div>
 
@@ -240,66 +281,97 @@ hr {
                     </div>
                     {{Order_item}}
                     <div class="text-95 text-secondary-d3">
-                    
-                    {% for order in orderItems %}
+
+                        {% for order in orderItems %}
 
                         <div class="row mb-2 mb-sm-0 py-25">
-                            <div class="d-none d-sm-block col-1">1</div>
+                            <div class="d-none d-sm-block col-1">{{forloop.counter}}</div>
                             <div class="col-9 col-sm-5">{{order.Product_id.Product_name}}</div>
                             <div class="d-none d-sm-block col-2">{{order.Product_qty}}</div>
                             <div class="d-none d-sm-block col-2 text-95">{{order.Product_id.Product_price}}</div>
-                            <div class="col-2 text-secondary-d2">{{order.Product_id.total_price}}</div>
+                            <div class="col-2 text-secondary-d2">{{order.Sub_total_price}}</div>
                         </div>
-                    {% endfor %}
-                        
-                    <div class="row border-b-2 brc-default-l2"></div>
+                        {% endfor %}
 
-                    <div class="row mt-3">
-                        <div class="col-12 col-sm-7 text-grey-d2 text-95 mt-2 mt-lg-0">
-                            Extra note such as company or payment information...
-                        </div>
+                        <div class="row border-b-2 brc-default-l2"></div>
 
-                        <div class="col-12 col-sm-5 text-grey text-90 order-first order-sm-last">
-                            <div class="row my-2">
-                                <div class="col-7 text-right">
-                                    SubTotal
-                                </div>
-                                <div class="col-5">
-                                    <span class="text-120 text-secondary-d1">{{sub_total}}</span>
-                                </div>
+                        <div class="row mt-3">
+                            <div class="col-12 col-sm-7 text-grey-d2 text-95 mt-2 mt-lg-0">
+
                             </div>
 
-                            <div class="row my-2">
-                                <div class="col-7 text-right">
-                                    Tax (10%)
+                            <div class="col-12 col-sm-5 text-grey text-90 order-first order-sm-last">
+                                <div class="row my-2">
+                                    <div class="col-7 text-right">
+                                        SubTotal
+                                    </div>
+                                    <div class="col-5">
+                                        <span class="text-120 text-secondary-d1">{{sub_total}}</span>
+                                    </div>
                                 </div>
-                                <div class="col-5">
-                                    <span class="text-110 text-secondary-d1">$225</span>
-                                </div>
-                            </div>
 
-                            <div class="row my-2 align-items-center bgc-primary-l3 p-2">
-                                <div class="col-7 text-right">
-                                    Total Amount
+                                <div class="row my-2">
+                                    <div class="col-7 text-right">
+                                        Dilivery Charge
+                                    </div>
+                                    <div class="col-5">
+                                        <span class="text-110 text-secondary-d1">{{dilivery_charge}}</span>
+                                    </div>
                                 </div>
-                                <div class="col-5">
-                                    <span class="text-150 text-success-d3 opacity-2">$2,475</span>
+
+                                <div class="row my-2 align-items-center bgc-primary-l3 p-2">
+                                    <div class="col-7 text-right">
+                                        Total Amount
+                                    </div>
+                                    <div class="col-5">
+                                        <span class="text-150 text-success-d3 opacity-2"> RS {{final_total}}.00</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <hr />
+                        <hr />
 
-                    <!-- <div>
+                        <!-- <div>
                         <span class="text-secondary-d1 text-105">Thank you for your business</span>
                         <a href="#" class="btn btn-info btn-bold px-4 float-right mt-3 mt-lg-0">Pay Now</a>
                     </div> -->
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
 
-{% endblock content %}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js">
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/vfs_fonts.js"></script>
+    <script type="text/javascript">
+        $("body").on("click", "#printInvoice", function () {
+            html2canvas($('.invoice')[0], {
+                onrendered: function (canvas) {
+                    var data = canvas.toDataURL();
+                    var docDefinition = {
+                        content: [
+                            {
+                                text: '',
+                                fontSize: 25,
+                                alignment: 'center'
+                            },
+                            {
+                                image: data,
+                                width: 500,
+                                height: 500
+                            }
+                        ],
+                    };
+                    pdfMake.createPdf(docDefinition).download("Invoice.pdf");
+                }
+            });
+        });
+    </script>
+
+    {% endblock content %}

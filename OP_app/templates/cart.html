@@ -41,11 +41,12 @@
                 <td>RS {{cart_item.product_id.Product_price}}</td>
                 <td>
                   <div class="input-group mb-3" style="max-width: 120px;">
-
-                    <input type="number" class="form-control text-center" value="{{cart_item.product_qty}}" placeholder=""
-                      aria-label="Example text with button addon" ar
-                      ia-describedby="button-addon1">
-
+                    <form action="{% url 'update_qty_in_cart' pk=cart_item.pk %}" method="post">
+                      {% csrf_token %}
+                      <input type="number" class="form-control text-center" name="qty" value="{{cart_item.product_qty}}"
+                        placeholder="" aria-label="Example text with button addon" ar ia-describedby="button-addon1"
+                        onchange="this.form.submit();">
+                    </form>
                   </div>
 
                 </td>

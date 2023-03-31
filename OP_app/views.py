@@ -209,6 +209,7 @@ def cart(request):
     except Exception as e:
         msg = "Please First do login !"
         context = {'msg': msg}
+        print(e)
         return render(request, 'login.html', context)
 
 
@@ -247,6 +248,25 @@ def add_to_cart(request, pk):
         context = {'msg': msg}
         print(e)
         return render(request, 'login.html', context)
+
+
+
+def update_qty_in_cart(request,pk):
+    cart = Cart.objects.get(pk=pk)
+    qty = int(request.POST['qty'])
+    print("qty",qty)
+    if qty <= cart.product_id.Product_qty:
+        cart.product_qty = qty
+        cart.total_price= qty * float(cart.product_id.Product_price)
+        print(cart.total_price)
+        cart.save()
+        print("Go To MyCart")
+        return redirect('cart')
+    else:
+        msg="Only "+str(cart.product_id.Product_qty)+" Quantity Left In Stock"
+        return render(request,'cart.html',{'cart':cart,'msg':msg})
+
+
 
 
 def wishlist(request):

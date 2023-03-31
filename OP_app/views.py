@@ -217,9 +217,12 @@ def add_to_cart(request, pk):
         product = Product.objects.get(pk=pk)
         user = User.objects.get(email=request.session['email'])
         cart_product = Cart.objects.filter(user=user)
-        pro_qty = request.POST['pro_qty']
-        total_price = product.Product_price * int(pro_qty)
+        try:
+            pro_qty = request.POST['pro_qty']
+        except:
+            pro_qty = 1
 
+        total_price = product.Product_price * int(pro_qty)
         try:
             cart_obj = Cart.objects.get(product_id=product, user=user)
 
@@ -242,6 +245,7 @@ def add_to_cart(request, pk):
     except Exception as e:
         msg = "Please First do login !"
         context = {'msg': msg}
+        print(e)
         return render(request, 'login.html', context)
 
 
@@ -251,10 +255,10 @@ def wishlist(request):
         wishlist_product = Wishlist.objects.filter(user=user)
         context = {'wishlist_product': wishlist_product}
         return render(request, 'Wishlist.html', context)
-
     except Exception as e:
         msg = "Please First do login !"
         context = {'msg': msg}
+        print(e)
         return render(request, 'login.html', context)
 
 

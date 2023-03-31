@@ -23,8 +23,10 @@
                     <th class="product-thumbnail">Image</th>
                     <th class="product-name">Product</th>
                     <th class="product-price">Price</th>
+                    <th class="product-remove">Action</th>
                     
-                    <th class="product-remove">Remove</th>
+                    <th class="product-remove"></th>
+
                   </tr>
                 </thead>
                 <tbody>
@@ -37,7 +39,7 @@
                       <h2 class="h5 text-black">{{item.product_id.Product_name}}</h2>
                     </td>
                     <td>RS {{item.product_id.Product_price}}</td>
-                    
+                    <td><a href="{% url 'add_to_cart' pk=item.product_id.pk %}">Add to cart</a></td>
                     
                     <td><a href="{% url 'remove_wishlist' item.pk %}" class="btn btn-primary btn-sm">X</a></td>
                   </tr> 

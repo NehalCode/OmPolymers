@@ -20,6 +20,7 @@ from OP_project import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # path(r'^admin/report_generate/$','OP_app.views.report_page'),
     path('',include("OP_app.urls")),
 ]
 if settings.DEBUG: # new

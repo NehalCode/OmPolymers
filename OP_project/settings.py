@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'OP_app',
+    'import_export',
 ]
 
 MIDDLEWARE = [
@@ -142,3 +143,7 @@ EMAIL_HOST_PASSWORD = 'fvzfmhbjdmricycm'
 # Razor Pay key
 RAZORPAY_API_KEY = "rzp_test_qmhD1HyAJTaQrl"
 RAZORPAY_API_SECRET_KEY = "gMRA6QjlM7BhLWjFkwLeAVwI"
+
+
+IMPORT_EXPORT_IMPORT_PERMISSION_CODE = 'delete' 
+IMPORT_EXPORT_EXPORT_PERMISSION_CODE = 'delete'

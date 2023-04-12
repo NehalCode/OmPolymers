@@ -51,6 +51,26 @@ admin.site.register(Order,orderAdmin)
 
 class orderitemAdmin(admin.ModelAdmin):
     list_display  = ("Order_id", "Product_id")
-admin.site.register(Order_item,orderitemAdmin)
+    actions = ['generate_report'] 
+    def generate_report(self, request, queryset): 
+        # Retrieve data from the queryset 
+        data = queryset.values('Product_id', 'Product_qty') 
+        # Create a figure and axis object 
+        fig, ax = plt.subplots() 
+        # Plot the data as a bar chart 
+        ax.bar([d['topic'] for d in data], [d['name'] for d in data]) 
+        # Set the axis labels and title 
+        ax.set_xlabel('product') 
+        ax.set_ylabel('qty') 
+        ax.set_title('product order report') # Save the plot to a BytesIO object 
+        buffer = io.BytesIO() 
+        plt.savefig(buffer, format='png') 
+        plt.close(fig) 
+        buffer.seek(0) # Set the response content type to image/png 
+        response = HttpResponse(buffer, content_type='image/png') 
+        response['Content-Disposition'] = 'attachment; filename=my_report.png' 
+        return response
 
+
+admin.site.register(Order_item,orderitemAdmin)
 

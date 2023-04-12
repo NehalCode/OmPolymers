@@ -3,7 +3,9 @@ from OP_app.models import *
 from django.utils.html import format_html
 from datetime import datetime
 from import_export.admin import ImportExportModelAdmin
-
+import matplotlib.pyplot as plt
+from django.http import HttpResponse
+import io
 # Register your models here.
 admin.site.site_header ='Om polymers Admin'
 admin.site.index_title ='Om polymers - Admin'
@@ -58,7 +60,7 @@ class orderitemAdmin(admin.ModelAdmin):
         # Create a figure and axis object 
         fig, ax = plt.subplots() 
         # Plot the data as a bar chart 
-        ax.bar([d['topic'] for d in data], [d['name'] for d in data]) 
+        ax.bar([d['Product_id'] for d in data], [d['Product_qty'] for d in data]) 
         # Set the axis labels and title 
         ax.set_xlabel('product') 
         ax.set_ylabel('qty') 

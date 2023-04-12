@@ -389,7 +389,7 @@ def invoice(request):
                 
                 # user=User.objects.get(email=email)
                 # order=Order.objects.get()
-                return render(request, 'invoice.html')
+                return render(request, 'invoice.html', )
             else:
                 # if signature verification fails.
                 print("fail payment....")
@@ -476,13 +476,13 @@ def new_password(request):
         print("session otp : ", email)
 
         if user_otp == gen_otp:
-            context = {'email': email}
-            return render(request, 'newpass.html', context)
+         context = {'email': email}
+        return render(request, 'newpass.html', context)
 
-        else:
-            msg = "otp incorrect"
-            context = {'msg': msg, 'email': email, 'gen_otp': gen_otp}
-            return render(request, 'fotp.html', context)
+    else:
+        msg = "otp incorrect"
+        context = {'msg': msg, 'email': email, 'gen_otp': gen_otp}
+        return render(request, 'fotp.html', context)
 
 
 def save_password(request):

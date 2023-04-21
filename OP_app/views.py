@@ -338,11 +338,12 @@ def checkout(request):
         payment_type = request.POST['payment_type']
         # online = request.POST['online']
         print(fname, lname, address, state, zipcode, email, mobile_no,payment_type)
+        
+        order = Order.objects.create(user=user, first_name=fname, last_name=lname, address=address, state=state,zipcode=zipcode, email=email, mobile_no=mobile_no, total_price=final_total, status="Pending")
+        for product in cart_product:
+            Order_item.objects.create(Order_id=order, Product_id=product.product_id,Product_qty=product.product_qty, Sub_total_price=product.total_price)
 
         if(payment_type=="cod"):
-            order = Order.objects.create(user=user,first_name=fname,last_name=lname,address=address,state=state,zipcode=zipcode,email=email,mobile_no=mobile_no,total_price=final_total,status="Pending")
-            for product in cart_product:
-                Order_item.objects.create(Order_id=order,Product_id=product.product_id,Product_qty=product.product_qty,Sub_total_price=product.total_price)
             orderItems = Order_item.objects.filter(Order_id=order)
             return render(request,"invoice.html",{'order':order,'orderItems':orderItems,"final_total": final_total,"sub_total": sub_total,"dilivery_charge":dilivery_charge})
         else:
@@ -351,7 +352,7 @@ def checkout(request):
             order_currency = "INR"
             payment_order = client.order.create(dict(amount=order_amount*100,currency=order_currency,payment_capture=1))
             payment_order_id = payment_order['id']
-            return render(request,'pay.html',{'amount':order_amount,'payment_order':payment_order,'user':user,'sub_total':sub_total,'tax':tax})
+            return render(request,'pay.html',{'orderId': order.id,'amount':order_amount,'payment_order':payment_order,'user':user,'sub_total':sub_total,'tax':tax})
 
     else:
         context = {'sub_total': sub_total,
@@ -388,8 +389,14 @@ def invoice(request):
                 print("sucessfull payment.....")
                 
                 # user=User.objects.get(email=email)
-                # order=Order.objects.get()
-                return render(request, 'invoice.html', )
+                order = Order.objects.get(id=request.POST['orderId'])
+                orderItems = Order_item.objects.filter(Order_id=order)
+                final_total = amount
+                sub_total = request.POST['sub_total']
+                dilivery_charge = request.POST['tax']
+                
+                return render(request, 'invoice.html', {'order': order, 'orderItems': orderItems, "final_total": final_total, "sub_total": sub_total, "dilivery_charge": dilivery_charge})
+        
             else:
                 # if signature verification fails.
                 print("fail payment....")
